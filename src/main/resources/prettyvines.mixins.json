@@ -5,8 +5,9 @@
   "refmap": "prettyvines.mixins.refmap.json",
   "package": "be.ephys.prettyvines.mixins",
   "mixins": [
-    "VineBlockMixin",
-    "SugarCaneBlockMixin"
+    "CactusBlockMixin",
+    "SugarCaneBlockMixin",
+    "VineBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
