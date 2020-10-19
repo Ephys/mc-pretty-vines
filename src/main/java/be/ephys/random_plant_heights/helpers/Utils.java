@@ -1,4 +1,4 @@
-package be.ephys.prettyvines.helpers;
+package be.ephys.random_plant_heights.helpers;
 
 import java.util.Random;
 

@@ -16,8 +16,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.0'
-group = 'be.ephys.prettyvines' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'prettyvines'
+group = 'be.ephys.random_plant_heights' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'random_plant_heights'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -38,7 +38,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=prettyvines.mixins.json"
+            arg "-mixin.config=random_plant_heights.mixins.json"
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
@@ -47,7 +47,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                prettyvines {
+                random_plant_heights {
                     source sourceSets.main
                 }
             }
@@ -55,7 +55,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=prettyvines.mixins.json"
+            arg "-mixin.config=random_plant_heights.mixins.json"
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
@@ -64,7 +64,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                prettyvines {
+                random_plant_heights {
                     source sourceSets.main
                 }
             }
@@ -79,10 +79,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'prettyvines', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'random_plant_heights', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                prettyvines {
+                random_plant_heights {
                     source sourceSets.main
                 }
             }
@@ -91,7 +91,7 @@ minecraft {
 }
 
 mixin {
-    add sourceSets.main, 'prettyvines.mixins.refmap.json'
+    add sourceSets.main, 'random_plant_heights.mixins.refmap.json'
 }
 
 dependencies {
@@ -124,14 +124,14 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "prettyvines",
+            "Specification-Title": "random_plant_heights",
             "Specification-Vendor": "ephys",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"ephys",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs": "prettyvines.mixins.json"
+            "MixinConfigs": "random_plant_heights.mixins.json"
         ])
     }
 }

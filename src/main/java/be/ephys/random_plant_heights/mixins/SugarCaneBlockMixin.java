@@ -1,7 +1,7 @@
-package be.ephys.prettyvines.mixins;
+package be.ephys.random_plant_heights.mixins;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CactusBlock;
+import net.minecraft.block.SugarCaneBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,10 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-import static be.ephys.prettyvines.helpers.Utils.randomIntInclusive;
+import static be.ephys.random_plant_heights.helpers.Utils.randomIntInclusive;
 
-@Mixin(CactusBlock.class)
-public class CactusBlockMixin {
+@Mixin(SugarCaneBlock.class)
+public class SugarCaneBlockMixin {
+
   @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
   private void randomTick$randomiseHeight(BlockState state, ServerWorld worldIn, BlockPos pos, Random random, CallbackInfo callbackInfo) {
     callbackInfo.cancel();
@@ -24,7 +25,7 @@ public class CactusBlockMixin {
       return;
     }
 
-    CactusBlock self = (CactusBlock) (Object) this;
+    SugarCaneBlock self = (SugarCaneBlock) (Object) this;
 
     int i;
     for(i = 1; worldIn.getBlockState(pos.down(i)).isIn(self); ++i) {
@@ -34,17 +35,14 @@ public class CactusBlockMixin {
     int maxHeight = randomIntInclusive(random2, 2, 4);
 
     if (i < maxHeight) {
-      int j = state.get(CactusBlock.AGE);
-      if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, up, state, true)) {
+      int j = state.get(SugarCaneBlock.AGE);
+      if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, true)) {
         if (j == 15) {
           worldIn.setBlockState(up, self.getDefaultState());
-          BlockState blockstate = state.with(CactusBlock.AGE, Integer.valueOf(0));
-          worldIn.setBlockState(pos, blockstate, 4);
-          blockstate.neighborChanged(worldIn, up, self, pos, false);
+          worldIn.setBlockState(pos, state.with(SugarCaneBlock.AGE, Integer.valueOf(0)), 4);
         } else {
-          worldIn.setBlockState(pos, state.with(CactusBlock.AGE, Integer.valueOf(j + 1)), 4);
+          worldIn.setBlockState(pos, state.with(SugarCaneBlock.AGE, Integer.valueOf(j + 1)), 4);
         }
-        net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
       }
     }
   }

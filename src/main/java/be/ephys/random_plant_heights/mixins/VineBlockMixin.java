@@ -1,4 +1,4 @@
-package be.ephys.prettyvines.mixins;
+package be.ephys.random_plant_heights.mixins;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-import static be.ephys.prettyvines.helpers.Utils.randomIntInclusive;
+import static be.ephys.random_plant_heights.helpers.Utils.randomIntInclusive;
 
 @Mixin(VineBlock.class)
 public class VineBlockMixin {
