@@ -11,11 +11,11 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
- apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0'
+version = '1.0.2'
 group = 'be.ephys.random_plant_heights' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'random_plant_heights'
 
@@ -118,6 +118,24 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+}
+
+// Process resources on build: set the version in the mods.toml
+processResources {
+	// This will ensure that this task is redone when the versions change.
+	inputs.property 'version', project.version
+
+	// Replace stuff in mods.toml, nothing else
+	from(sourceSets.main.resources.srcDirs) {
+		include 'META-INF/mods.toml'
+		// Replace version
+		expand('jarVersion': project.version)
+	}
+
+	// Copy everything else except the mods.toml
+	from(sourceSets.main.resources.srcDirs) {
+		exclude 'META-INF/mods.toml'
+	}
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

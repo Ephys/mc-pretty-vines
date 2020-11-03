@@ -4,9 +4,9 @@ license="MIT"
 issueTrackerURL="https://github.com/Ephys/mc-random-plant-heights/issues"
 [[mods]]
 modId="random_plant_heights"
-version="${file.jarVersion}"
+version="${jarVersion}"
 displayName="Random Plant Heights"
-#updateJSONURL="http://myurl.me/"
+updateJSONURL="https://mc-curse-update-checker.herokuapp.com/413814"
 displayURL="https://github.com/Ephys/mc-random-plant-heights"
 #logoFile="examplemod.png"
 #credits=""
@@ -25,6 +25,6 @@ Makes vines stop growing after a given randomised height
 [[dependencies.random_plant_heights]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16.3, 1.16.4]"
     ordering="NONE"
     side="BOTH"
